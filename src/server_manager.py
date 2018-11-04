@@ -68,7 +68,6 @@ class management:
 			else:
 				for k, v in self.clients.iteritems():
 					if v.uid == result[0]:
-						print('xx', result[1])
 						self.clients[clnt].queue.put(result[1])
 						if clnt not in self.outputs:
 							self.outputs.append(clnt)
