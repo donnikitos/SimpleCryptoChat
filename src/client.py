@@ -8,7 +8,6 @@ from OpenSSL import SSL
 
 import defaults
 
-# host = '104.248.196.50'
 host = '127.0.0.1'
 
 
