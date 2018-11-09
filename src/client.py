@@ -13,8 +13,6 @@ host =  '104.248.196.50'
 if len(sys.argv) >= 2:
 	host =  sys.argv[1]
 
-print(len(sys.argv))
-
 sys.stdout.write('Choose your ID: ')
 username = raw_input()
 
