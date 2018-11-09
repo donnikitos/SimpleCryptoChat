@@ -68,9 +68,9 @@ class management:
 			else:
 				for k, v in self.clients.iteritems():
 					if v.uid == result[0]:
-						self.clients[clnt].queue.put(result[1])
-						if clnt not in self.outputs:
-							self.outputs.append(clnt)
+						# self.clients[clnt].queue.put(result[1])
+						# if clnt not in self.outputs:
+						# 	self.outputs.append(clnt)
 
 						v.queue.put(result[1])
 						if k not in self.outputs:
@@ -82,3 +82,9 @@ class management:
 			self.clients[clnt].kill()
 			del self.clients[clnt]
 			self.inputs.remove(clnt)
+
+	def shutdown(self):
+		sys.stdout.write(u'\u001b[31;1mShutting down server, disconnecting clients: \u001b[0m' + str(len(self.clients)) + '\n')
+
+		for k in self.clients:
+			self.clients[k].kill()
