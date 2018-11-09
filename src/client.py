@@ -43,7 +43,7 @@ while running:
 					recepient = msg[1]
 				elif msg[0] == 'exit':
 					running = False
-			else:
+			elif len(msg) > 0:
 				socket.send(defaults.protocol(username, recepient, msg))
 
 socket.close()
