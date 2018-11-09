@@ -12,18 +12,26 @@ import server_manager
 
 socket = sckt.socket(sckt.AF_INET, sckt.SOCK_STREAM)
 socket.setsockopt(sckt.SOL_SOCKET, sckt.SO_REUSEADDR, 1)
-# socket.bind((sckt.gethostname(), defaults.PORT))
-socket.bind(('', defaults.PORT))
+socket.bind((sckt.gethostname(), defaults.PORT))
+# socket.bind(('', defaults.PORT))
 socket.listen(5)
 
 running = True
 manager = server_manager.management()
 while running:
-	read, write, exceptions = slct.select([socket] + manager.inputs, manager.outputs, [], 0)
+	read, write, exceptions = slct.select([socket, sys.stdin] + manager.inputs, manager.outputs, [], 0)
 
 	for client in read:
 		if client == socket:
 			manager.reg_client(client)
+		elif client == sys.stdin:
+			msg = raw_input()
+			if msg[:1] == '/':
+				msg = msg[1:].split()
+				if msg[0] == 'exit':
+					manager.shutdown()
+					running = False
+					sys.stdout.write('Exiting\n')
 		else:
 			manager.receive(client)
 
