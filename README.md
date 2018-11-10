@@ -9,6 +9,9 @@ A simple open source secure chat written in Python, socket exercise
 * ~~Create basic console commands~~
 * Implement double OpenSSH encryption
 * Implement terminal UI
+* Bug fixing
+* Bug fixing
+* Bug fixing
 
 ## Getting Started
 
